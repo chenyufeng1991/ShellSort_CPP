@@ -38,8 +38,10 @@ void ShellSort(vector<int> &vec)
     long i;
     long size = vec.size();
     // 注意：gap为多少，就把序列分为多少组；
+    // 最后一次插入排序时，gap = 1；
     for (gap = size / 2; gap > 0; gap = gap / 2)
         for (i = 0; i < gap; i++)
+            // 对每一组分别进行直接插入排序
             for (long j = i + gap; j < size; j = j + gap)
             {
                 if (vec[j] < vec[j - gap])
@@ -48,6 +50,7 @@ void ShellSort(vector<int> &vec)
                     long m;
                     for (m = j - gap; m >= i && temp < vec[m]; m = m - gap)
                     {
+                        // 查找元素位置，并移动数组
                         vec[m + gap] = vec[m];
                     }
                     vec[m + gap] = temp;
